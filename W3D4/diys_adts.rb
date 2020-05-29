@@ -59,29 +59,34 @@ class Map
 
   def set(key, value)
     @map.each do |pair|
-      pair[1] = value if pair[0] == key
-      return
+      if pair[0] == key
+        pair[1] = value
+        return
+      end
     end
     @map << [key, value]
   end
 
   def get(key)
-
+    @map.each do |pair|
+      return pair if pair[0] == key
+    end
+    nil
   end
 
   def delete(key)
-
+    @map.each_with_index do |pair, idx|
+      @map.delete_at(idx) if pair[0] == key
+    end
   end
 
   def show
     @map
   end
 
+  def inspect
+    @map
+  end
+
 end
 
-map = Map.new
-map.set("ferret", 1)
-map.set("dog", 2)
-map.set("cat", 3)
-map.set("parrot", 4)
-p map.show
