@@ -5,6 +5,10 @@ class GraphNode
     @value = value
     @neighbors = []
   end
+
+  def bfs(starting_node, target_value)
+    queue = 
+  end
 end
 
 a = GraphNode.new('a')
