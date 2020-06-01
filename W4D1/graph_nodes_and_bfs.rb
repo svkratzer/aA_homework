@@ -6,8 +6,14 @@ class GraphNode
     @neighbors = []
   end
 
-  def bfs(starting_node, target_value)
-    queue = 
+  def bfs(node, target_value)
+    queue = [node]
+    until queue.empty?
+      el = queue.shift
+      return el if el == target_value
+      el.neighbors.each { |el| queue << el }
+    end
+    nil
   end
 end
 
@@ -21,3 +27,6 @@ a.neighbors = [b, c, e]
 c.neighbors = [b, d]
 e.neighbors = [a]
 f.neighbors = [e]
+
+p bfs(a, "b")
+# p bfs(a, "f")
