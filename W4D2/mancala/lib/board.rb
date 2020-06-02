@@ -1,14 +1,26 @@
+require_relative "./player.rb"
+
 class Board
   attr_accessor :cups
 
   def initialize(name1, name2)
+    @player_1 = Player.new(name1, 1)
+    @player_2 = Player.new(name1, 2)
+    @cups = Array.new(14) { [] }
+    self.place_stones
   end
 
   def place_stones
-    # helper method to #initialize every non-store cup with four stones each
+    @cups[0..5].each do |cup|
+      4.times { cup << :stone }
+    end
+    @cups[7..12].each do |cup|
+      4.times { cup << :stone }
+    end
   end
 
   def valid_move?(start_pos)
+    
   end
 
   def make_move(start_pos, current_player_name)
