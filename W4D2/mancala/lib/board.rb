@@ -28,6 +28,8 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    num_stones = @cups[start_pos].length
+    @cups[start_pos].delete(:stone)
     
   end
 
