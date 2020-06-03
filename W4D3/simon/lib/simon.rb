@@ -20,18 +20,24 @@ class Simon
   def take_turn
     self.show_sequence
     self.require_sequence
+    puts
     self.round_success_message unless self.game_over
     self.sequence_length += 1
   end
 
   def show_sequence
     self.add_random_color
-    p self.seq
+    puts self.seq.join(" ")
+    puts
+    puts "Press 'enter' when you're done memorizing."
+    gets
+    system("clear")
   end
 
   def require_sequence
     puts "Please, enter the sequence with spaces in between."
     puts "'red', 'blue', 'green', or 'yellow'"
+    puts
     input = gets.chomp.split(" ")
     self.game_over = true unless input == self.seq 
       
