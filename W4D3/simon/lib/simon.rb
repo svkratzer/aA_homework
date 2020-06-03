@@ -10,19 +10,31 @@ class Simon
   end
 
   def play
-
+    until self.game_over
+      self.take_turn
+    end
+    self.game_over_message
+    self.reset_game
   end
 
   def take_turn
-
+    self.show_sequence
+    self.require_sequence
+    self.round_success_message unless self.game_over
+    self.sequence_length += 1
   end
 
   def show_sequence
-    
+    self.add_random_color
+    p self.seq
   end
 
   def require_sequence
-
+    puts "Please, enter the sequence with spaces in between."
+    puts "'red', 'blue', 'green', or 'yellow'"
+    input = gets.chomp.split(" ")
+    self.game_over = true unless input == self.seq 
+      
   end
 
   def add_random_color
@@ -30,14 +42,23 @@ class Simon
   end
 
   def round_success_message
-
+    puts "OOOOWEEE, YOU NAILED IT! Next round..."
   end
 
   def game_over_message
-
+    puts "SORRY, GAME OVER"
   end
 
   def reset_game
-
+    self.sequence_length = 1
+    self.game_over = false
+    self.seq = []
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+
+game = Simon.new
+game.play
+
 end
