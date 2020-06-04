@@ -1,5 +1,6 @@
 require 'rspec'
 require 'dessert'
+require 'chef'
 
 =begin
 Instructions: implement all of the pending specs (the `it` statements without blocks)! Be sure to look over the solutions when you're done.
@@ -7,15 +8,17 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 
 describe Dessert do
   let(:chef) { double("chef") }
+  let(:brownie) { Dessert.new("brownie", 100, chef) }
 
   describe "#initialize" do
     it "sets a type"
-
+      expect(brownie.type).to eq("brownie")
     it "sets a quantity"
-
+      expect(brownie.quantity).to eq(100)
     it "starts ingredients as an empty array"
-
+      expect(brownie.ingredients).to eq([])
     it "raises an argument error when given a non-integer quantity"
+      exepct { Dessert.new("Brownie", "100", chef)}.to raise_error(ArgumentError)
   end
 
   describe "#add_ingredient" do
