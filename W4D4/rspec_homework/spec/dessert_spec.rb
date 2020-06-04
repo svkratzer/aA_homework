@@ -11,32 +11,55 @@ describe Dessert do
   let(:brownie) { Dessert.new("brownie", 100, chef) }
 
   describe "#initialize" do
-    it "sets a type"
+
+    it "sets a type" do
       expect(brownie.type).to eq("brownie")
-    it "sets a quantity"
+    end
+
+    it "sets a quantity" do
       expect(brownie.quantity).to eq(100)
-    it "starts ingredients as an empty array"
+    end
+
+    it "starts ingredients as an empty array" do
       expect(brownie.ingredients).to eq([])
-    it "raises an argument error when given a non-integer quantity"
-      exepct { Dessert.new("Brownie", "100", chef)}.to raise_error(ArgumentError)
+    end
+
+    it "raises an argument error when given a non-integer quantity" do
+      expect { Dessert.new("Brownie", "100", chef)}.to raise_error(ArgumentError)
+    end
+
   end
 
   describe "#add_ingredient" do
-    it "adds an ingredient to the ingredients array"
+    it "adds an ingredient to the ingredients array" do
+      brownie.add_ingredient("butter")
+      expect(brownie.ingredients).to include("butter")
+    end
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      ingredients = ["chocolate", "butter", "flour"]
+      ingredients.each { |ele| brownie.add_ingredient(ele) }
+      expect(brownie.ingredients).to eq(ingredients)
+      brownie.mix!
+      expect(brownie.ingredients).to_not eq(ingredients)
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      expect(brownie.eat(50)).to eq(50)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect { brownie.eat(110) }.to raise_error
+    end
   end
 
   describe "#serve" do
     it "contains the titleized version of the chef's name"
+    
   end
 
   describe "#make_more" do
