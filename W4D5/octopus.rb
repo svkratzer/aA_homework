@@ -1,6 +1,6 @@
 fishes = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh']
 
-def find_fish(fishes)
+def sluggish_octopus(fishes)
   longest_fish = ""
   fishes.each do |fish_1|
     fishes.each do |fish_2|
@@ -15,6 +15,17 @@ def find_fish(fishes)
   p longest_fish
 end
 
-p "fiiiissshhhhhh"
+def dominant_octopus(fishes)
 
-find_fish(fishes)
+end
+
+def merge(arr1, arr2)
+  merged = []
+  until arr1.empty? || arr2.empty?
+    merged << ( arr1.first < arr2.first ? arr1.shift : arr2.shift )
+  end
+  merged
+end
+
+p "fiiiissshhhhhh"
+sluggish_octopus(fishes)
