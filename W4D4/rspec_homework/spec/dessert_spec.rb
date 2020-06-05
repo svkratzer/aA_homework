@@ -53,13 +53,13 @@ describe Dessert do
     end
 
     it "raises an error if the amount is greater than the quantity" do
-      expect { brownie.eat(110) }.to raise_error
+      expect { brownie.eat(110) }.to raise_error(StandardError)
     end
   end
 
   describe "#serve" do
     it "contains the titleized version of the chef's name"
-    
+
   end
 
   describe "#make_more" do
