@@ -14,6 +14,20 @@ end
 class Play
   attr_accessor :id, :title, :year, :playwright_id
 
+  def self.find_by_title(title)
+    play = PlayDBConnection.instance.execute(<<-SQL, title)
+      SELECT * FROM plays WHERE title = ?
+    SQL
+    play.empty? ? nil : Play.new(play.first)
+  end
+
+  def self.find_by_playwright(name)
+    PlayDBConnection.instance.execute(<<-SQL, playwright.id)
+      SELECT * FROM plays WHERE playwright_id = ?
+    SQL
+    
+  end
+
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM plays")
     data.map { |datum| Play.new(datum) }
