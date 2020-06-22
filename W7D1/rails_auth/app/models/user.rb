@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   validates :password_digest, presence: { message: 'Password can\'t be blank.'}
-  valditaes :password, length: { minimum: 6, allow_nil: true}
+  validates :password, length: { minimum: 6, allow_nil: true}
   
   def password=(password)
     @password = password
@@ -10,7 +10,7 @@ class User < ApplicationRecord
   end
 
   def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?([password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   private
