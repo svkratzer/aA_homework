@@ -1,8 +1,8 @@
 <!--Set variables for form attributes-->
-<% action = (user.persisted? ? user_url(user) : user_url) %>
+<% action = (user.persisted? ? user_url(user) : users_url) %>
 <% message = (user.persisted? ? "Update User" : "Create User") %>
 
-<form action="<%= action %>%" method = "POST">
+<form action="<%= action %>" method = "post">
   
   <!--if the action is edit, switches http method to PATCH-->
   <% if user.persisted? %>
